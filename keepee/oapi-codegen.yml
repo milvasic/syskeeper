@@ -1,0 +1,10 @@
+# oapi-codegen configuration for generating the keeper API client.
+# Run: make generate
+# https://github.com/oapi-codegen/oapi-codegen
+
+package: api
+generate:
+  - client
+  - types
+output: internal/api/client.gen.go
+input: ../openapi/openapi.yaml
