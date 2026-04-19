@@ -1,0 +1,25 @@
+# Normalize line endings to LF on check-in for all text files
+* text=auto eol=lf
+
+# Explicitly declare shell scripts as LF
+*.sh text eol=lf
+
+# Declare binary files to prevent corruption
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+
+# Force CRLF for Windows batch files (if any)
+*.bat text eol=crlf
+*.cmd text eol=crlf

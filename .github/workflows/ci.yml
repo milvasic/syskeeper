@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  # ────────────────────────────────────────────────────────────────────────────
+  # keeper — .NET lint, build, test
+  # ────────────────────────────────────────────────────────────────────────────
+  keeper:
+    name: keeper (.NET)
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: keeper
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build (warnings as errors)
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Install CSharpier
+        run: dotnet tool restore
+
+      - name: Format check (CSharpier)
+        run: dotnet csharpier --check .
+
+      - name: Test
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # keepee — Go lint, build, test
+  # ────────────────────────────────────────────────────────────────────────────
+  keepee:
+    name: keepee (Go)
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: keepee
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache-dependency-path: keepee/go.sum
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: gofmt check
+        run: |
+          unformatted=$(gofmt -l .)
+          if [ -n "$unformatted" ]; then
+            echo "The following files are not formatted:"
+            echo "$unformatted"
+            exit 1
+          fi
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          working-directory: keepee
+
+      - name: Build
+        run: go build ./...
+
+      - name: Test
+        run: go test ./...
