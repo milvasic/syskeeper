@@ -92,12 +92,12 @@ syskeeper/
 
 ### Prerequisites
 
-| Tool | Minimum version | Purpose |
-|------|-----------------|---------|
-| .NET SDK | 8.0 | Build and run `keeper` |
-| Go | 1.22 | Build and run `keepee` |
-| PostgreSQL | 15 | `keeper` database |
-| Docker (optional) | 24 | Run PostgreSQL locally |
+| Tool              | Minimum version | Purpose                |
+| ----------------- | --------------- | ---------------------- |
+| .NET SDK          | 10.0            | Build and run `keeper` |
+| Go                | 1.26            | Build and run `keepee` |
+| PostgreSQL        | 15              | `keeper` database      |
+| Docker (optional) | 24              | Run PostgreSQL locally |
 
 ### Run the keeper
 

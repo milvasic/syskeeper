@@ -22,9 +22,9 @@ Use active voice: "We will use X" rather than "X was considered". -->
 <!-- List the other options that were evaluated and briefly explain why they were not chosen. -->
 
 | Alternative | Reason not chosen |
-|-------------|-------------------|
-| Option A    | ... |
-| Option B    | ... |
+| ----------- | ----------------- |
+| Option A    | ...               |
+| Option B    | ...               |
 
 ## Consequences
 

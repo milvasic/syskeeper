@@ -22,10 +22,10 @@ This document describes the architecture of syskeeper: the keeper/keepee communi
 
 ## Component Overview
 
-| Component | Language / Framework | Role |
-|-----------|----------------------|------|
-| `keeper`  | ASP.NET Core 8, Razor Pages, Dapper, PostgreSQL | Central server: stores agent data, exposes REST API, serves dashboard |
-| `keepee`  | Go 1.22+ | Lightweight agent: collects system info, registers with keeper, pushes data |
+| Component | Language / Framework                             | Role                                                                        |
+| --------- | ------------------------------------------------ | --------------------------------------------------------------------------- |
+| `keeper`  | ASP.NET Core 10, Razor Pages, Dapper, PostgreSQL | Central server: stores agent data, exposes REST API, serves dashboard       |
+| `keepee`  | Go 1.26+                                         | Lightweight agent: collects system info, registers with keeper, pushes data |
 
 ---
 
@@ -198,9 +198,9 @@ agent_snapshots (
 
 The full API specification is maintained in [`openapi/`](../openapi/). Key endpoints:
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/api/agents/register` | Register a new keepee agent |
-| `POST` | `/api/agents/ping` | Push system snapshot, receive instructions |
-| `GET`  | `/api/agents` | List all registered agents (dashboard use) |
-| `GET`  | `/api/agents/{id}` | Get agent details and latest snapshot |
+| Method | Path                   | Description                                |
+| ------ | ---------------------- | ------------------------------------------ |
+| `POST` | `/api/agents/register` | Register a new keepee agent                |
+| `POST` | `/api/agents/ping`     | Push system snapshot, receive instructions |
+| `GET`  | `/api/agents`          | List all registered agents (dashboard use) |
+| `GET`  | `/api/agents/{id}`     | Get agent details and latest snapshot      |

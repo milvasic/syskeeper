@@ -47,12 +47,12 @@ syskeeper/
 
 #### Prerequisites
 
-| Tool | Minimum version | Purpose |
-|------|-----------------|---------|
-| .NET SDK | 8.0 | Build and run `keeper` |
-| Go | 1.22 | Build and run `keepee` |
-| PostgreSQL | 15 | `keeper` database |
-| Docker (optional) | 24 | Run PostgreSQL locally |
+| Tool              | Minimum version | Purpose                |
+| ----------------- | --------------- | ---------------------- |
+| .NET SDK          | 10.0            | Build and run `keeper` |
+| Go                | 1.26            | Build and run `keepee` |
+| PostgreSQL        | 15              | `keeper` database      |
+| Docker (optional) | 24              | Run PostgreSQL locally |
 
 #### Clone and configure
 
@@ -89,16 +89,17 @@ go run . --keeper-url http://localhost:5000 --api-key <your-key>
 
 We use a trunk-based workflow with short-lived feature branches:
 
-| Branch pattern | Purpose |
-|---------------|---------|
-| `main` | Stable, always deployable |
-| `feat/<short-description>` | New features |
-| `fix/<short-description>` | Bug fixes |
-| `chore/<short-description>` | Maintenance, dependency updates, tooling |
-| `docs/<short-description>` | Documentation only |
-| `refactor/<short-description>` | Refactoring without behavior change |
+| Branch pattern                 | Purpose                                  |
+| ------------------------------ | ---------------------------------------- |
+| `main`                         | Stable, always deployable                |
+| `feat/<short-description>`     | New features                             |
+| `fix/<short-description>`      | Bug fixes                                |
+| `chore/<short-description>`    | Maintenance, dependency updates, tooling |
+| `docs/<short-description>`     | Documentation only                       |
+| `refactor/<short-description>` | Refactoring without behavior change      |
 
 **Rules:**
+
 - Branch off `main`; target `main` in your PR.
 - Delete feature branches after merging.
 - Never force-push to `main`.
@@ -121,18 +122,18 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 
 ### Types
 
-| Type | When to use |
-|------|-------------|
-| `feat` | A new feature |
-| `fix` | A bug fix |
-| `docs` | Documentation only changes |
-| `style` | Formatting, missing semicolons, etc. (no logic change) |
+| Type       | When to use                                             |
+| ---------- | ------------------------------------------------------- |
+| `feat`     | A new feature                                           |
+| `fix`      | A bug fix                                               |
+| `docs`     | Documentation only changes                              |
+| `style`    | Formatting, missing semicolons, etc. (no logic change)  |
 | `refactor` | Code change that neither fixes a bug nor adds a feature |
-| `test` | Adding or correcting tests |
-| `chore` | Build process, dependency updates, tooling |
-| `ci` | CI/CD pipeline changes |
-| `perf` | Performance improvements |
-| `revert` | Reverts a previous commit |
+| `test`     | Adding or correcting tests                              |
+| `chore`    | Build process, dependency updates, tooling              |
+| `ci`       | CI/CD pipeline changes                                  |
+| `perf`     | Performance improvements                                |
+| `revert`   | Reverts a previous commit                               |
 
 ### Scope (optional)
 
@@ -144,7 +145,7 @@ Use the affected component: `keeper`, `keepee`, `docs`, `ci`, `api`.
 feat(keepee): add Docker container state collection
 fix(keeper): handle duplicate agent registration gracefully
 docs: add architecture diagram to README
-chore(keeper): upgrade to .NET 9
+chore(keeper): upgrade to .NET 11
 ```
 
 ### Breaking changes
@@ -178,7 +179,7 @@ Before submitting, make sure you have:
 - [ ] Updated relevant documentation
 - [ ] Run the formatter/linter for the affected component
 - [ ] Verified the build passes locally
-- [ ] Written a clear PR description explaining *what* and *why*
+- [ ] Written a clear PR description explaining _what_ and _why_
 
 ---
 
@@ -186,7 +187,7 @@ Before submitting, make sure you have:
 
 ### keeper (.NET / ASP.NET Core)
 
-- Follow the [Microsoft C# coding conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions).
+- Follow the [.NET runtime coding style guidelines](https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md).
 - Use `async`/`await` throughout; avoid `.Result` and `.Wait()`.
 - All database access goes through Dapper repository classes — no raw ADO.NET in controllers.
 - Validate all inputs; never trust agent-supplied data without validation.

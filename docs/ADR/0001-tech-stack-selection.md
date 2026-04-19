@@ -32,14 +32,14 @@ The key constraints for the tech stack are:
 
 ## Considered Alternatives
 
-| Alternative | Reason not chosen |
-|-------------|-------------------|
-| Python (FastAPI + SQLAlchemy) for the server | Less familiar to the author; slower cold starts for a long-running server process are not a concern, but the ecosystem for web UIs without a JS build step is weaker. |
-| Node.js / Express for the server | Author preference for statically typed languages in server code. |
-| Rust for the agent | Steeper learning curve; Go provides sufficient performance and a simpler cross-compilation story for the target use case. |
-| SQLite for the database | PostgreSQL is preferred for its robustness, JSONB support for flexible snapshot storage, and production-readiness. |
-| Entity Framework Core for ORM | Dapper is lighter weight, gives more control over SQL, and is better suited to the simple, query-oriented data access pattern of this project. |
-| Full SPA (React/Vue) for the dashboard | A separate front-end build pipeline adds complexity without clear benefit for a personal monitoring tool. Razor Pages provides server-rendered HTML with minimal overhead. |
+| Alternative                                  | Reason not chosen                                                                                                                                                          |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Python (FastAPI + SQLAlchemy) for the server | Less familiar to the author; slower cold starts for a long-running server process are not a concern, but the ecosystem for web UIs without a JS build step is weaker.      |
+| Node.js / Express for the server             | Author preference for statically typed languages in server code.                                                                                                           |
+| Rust for the agent                           | Steeper learning curve; Go provides sufficient performance and a simpler cross-compilation story for the target use case.                                                  |
+| SQLite for the database                      | PostgreSQL is preferred for its robustness, JSONB support for flexible snapshot storage, and production-readiness.                                                         |
+| Entity Framework Core for ORM                | Dapper is lighter weight, gives more control over SQL, and is better suited to the simple, query-oriented data access pattern of this project.                             |
+| Full SPA (React/Vue) for the dashboard       | A separate front-end build pipeline adds complexity without clear benefit for a personal monitoring tool. Razor Pages provides server-rendered HTML with minimal overhead. |
 
 ---
 

@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Suggest a new feature or improvement
-title: 'feat(<scope>): <short description>'
+title: "feat(<scope>): <short description>"
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
 ## Problem / Motivation

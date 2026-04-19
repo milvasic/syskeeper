@@ -4,9 +4,9 @@
 
 The following versions of syskeeper currently receive security updates:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| `main`  | ✅ Yes             |
+| Version        | Supported |
+| -------------- | --------- |
+| `main`         | ✅ Yes    |
 | Older releases | ❌ No     |
 
 We recommend always running the latest version from the `main` branch until a formal release cycle is established.

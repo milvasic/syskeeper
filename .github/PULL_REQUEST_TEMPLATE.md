@@ -17,7 +17,7 @@ Fixes #<!-- issue number -->
 - [ ] `ci` — CI/CD pipeline change
 - [ ] `perf` — performance improvement
 
-**Scope:** `keeper` / `keepee` / `docs` / `ci` / `api` / other: ___
+**Scope:** `keeper` / `keepee` / `docs` / `ci` / `api` / other: \_\_\_
 
 ---
 
@@ -25,8 +25,8 @@ Fixes #<!-- issue number -->
 
 <!-- Bullet-point list of the significant changes in this PR. -->
 
-- 
-- 
+-
+-
 
 ---
 

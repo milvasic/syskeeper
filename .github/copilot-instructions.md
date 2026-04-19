@@ -8,8 +8,8 @@ This file provides context for GitHub Copilot to generate more relevant suggesti
 
 **syskeeper** is a self-hosted Linux server monitoring tool consisting of two components:
 
-- **`keeper`** — ASP.NET Core 8 server with Razor Pages dashboard, PostgreSQL (via Dapper), REST API.
-- **`keepee`** — Go 1.22+ agent binary that runs on monitored Linux hosts and pushes system data to the keeper.
+- **`keeper`** — ASP.NET Core 10 server with Razor Pages dashboard, PostgreSQL (via Dapper), REST API.
+- **`keepee`** — Go 1.26+ agent binary that runs on monitored Linux hosts and pushes system data to the keeper.
 
 ---
 
@@ -76,7 +76,7 @@ syskeeper/
 ## What to Avoid
 
 - Avoid introducing new external dependencies without discussion.
-- Avoid ORM usage in `keeper` — Dapper and raw SQL only.
+- Avoid full ORM (e.g., Entity Framework) in `keeper` — use Dapper (a lightweight micro-ORM) and raw SQL only.
 - Avoid global state in `keepee`.
 - Avoid hard-coding the keeper URL or API keys anywhere.
 - Avoid C# nullable warnings — enable `<Nullable>enable</Nullable>` and handle nulls explicitly.
