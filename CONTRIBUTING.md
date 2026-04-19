@@ -203,6 +203,62 @@ Before submitting, make sure you have:
 
 ---
 
+## Linting & Formatting
+
+All linting and formatting can be run from the repo root using `make`.
+
+### Quick reference
+
+| Command | Description |
+| --- | --- |
+| `make lint` | Lint both keeper and keepee |
+| `make format` | Format both keeper and keepee |
+| `make build` | Build both projects |
+| `make test` | Test both projects |
+| `make all` | Build + test + lint (default) |
+
+### keeper (.NET)
+
+```bash
+# Install local tools (first time only)
+cd keeper && dotnet tool restore
+
+# Format with CSharpier (width 120, tabs)
+cd keeper && dotnet csharpier .
+
+# Check formatting without modifying files (used in CI)
+cd keeper && dotnet csharpier --check .
+
+# Apply code-style fixes reported by Roslyn analyzers
+cd keeper && dotnet format
+
+# Build — TreatWarningsAsErrors is enabled, so this also acts as a lint check
+cd keeper && dotnet build --configuration Release
+```
+
+CSharpier is configured in `keeper/.csharpierrc.json` (print width 120, tabs).
+Roslyn analyzer rules are declared in `keeper/.editorconfig` and enabled via `keeper/Directory.Build.props`.
+
+### keepee (Go)
+
+```bash
+# Format
+cd keepee && gofmt -w .
+
+# Format + fix imports
+cd keepee && goimports -w .
+
+# Vet
+cd keepee && go vet ./...
+
+# Full lint suite (requires golangci-lint: https://golangci-lint.run/welcome/install/)
+cd keepee && golangci-lint run ./...
+```
+
+golangci-lint rules are defined in `keepee/.golangci.yml`.
+
+---
+
 ## Running Tests
 
 ### keeper

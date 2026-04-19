@@ -1,0 +1,94 @@
+# golangci-lint configuration for keepee
+# https://golangci-lint.run/usage/configuration/
+
+version: "2"
+
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  default: none
+  enable:
+    # --- correctness ---
+    - errcheck        # checks that errors are handled
+    - govet           # reports suspicious constructs
+    - staticcheck     # runs staticcheck (SA, S, ST, QF rules)
+    - ineffassign     # detects assignments to variables that are never used
+    - deadcode        # finds unreachable code
+
+    # --- style / readability ---
+    - gofmt           # checks that code is formatted with gofmt
+    - goimports       # checks imports are grouped and sorted
+    - revive          # drop-in replacement for golint with extra rules
+    - godot           # checks comment sentences end with a period
+    - misspell        # finds common spelling mistakes in comments/strings
+
+    # --- safety ---
+    - gosec           # inspects for security problems
+    - bodyclose       # checks HTTP response bodies are closed
+    - noctx           # finds http.Request sent without context.Context
+    - rowserrcheck    # checks sql.Rows.Err is checked after iteration
+
+    # --- complexity ---
+    - cyclop          # cyclomatic complexity check
+    - gocognit        # cognitive complexity check
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+
+  govet:
+    enable-all: true
+    disable:
+      - shadow  # too noisy in practice
+
+  revive:
+    rules:
+      - name: exported
+        arguments:
+          - "checkPrivateReceivers"
+          - "sayRepetitiveInsteadOfStutters"
+      - name: unused-parameter
+      - name: error-return
+      - name: error-strings
+      - name: error-naming
+      - name: if-return
+      - name: var-naming
+      - name: package-comments
+      - name: range
+      - name: receiver-naming
+      - name: time-naming
+      - name: context-as-argument
+      - name: context-keys-type
+      - name: dot-imports
+      - name: blank-imports
+
+  gosec:
+    excludes:
+      - G104  # errors unhandled — already caught by errcheck
+
+  cyclop:
+    max-complexity: 15
+
+  gocognit:
+    min-complexity: 20
+
+  gofmt:
+    simplify: true
+
+  goimports:
+    local-prefixes: github.com/milvasic/syskeeper
+
+issues:
+  max-issues-per-linter: 50
+  max-same-issues: 10
+  exclude-rules:
+    # Relax some rules in test files
+    - path: "_test\\.go"
+      linters:
+        - errcheck
+        - gosec
+        - cyclop
+        - gocognit
